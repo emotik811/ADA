@@ -1,0 +1,57 @@
+
+public class menorElementoOmitido {
+	
+	public static int fuerzaBruta(int [] v){
+		
+		int i = 0;
+		while(i< v.length && v[i]==i) {
+			i++;
+		}
+		
+		return i;
+	}
+	
+	public static int recursivo(int[] v, int izq, int der) {
+		
+		//casos base
+		if(izq==der) {
+			
+			if(v[izq]==izq)
+			{
+				
+				return v[izq] +1;
+			}else {
+				
+				return v[izq] -1;
+			}
+		}else {
+			
+			int medio = (izq+der)/2;
+			if(v[medio]==medio) {
+				return recursivo(v,medio+1,der);
+			}else {
+				return recursivo(v,izq,medio-1);
+			}
+			
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int [] array_0 = {0,1,2,6,9,11,15};
+		int [] array_1 = {0,1,2,3,4,5,6};
+		int [] array_2 = {1,2,3,4,6,9,11,15};
+		System.out.println("Array 0 "+fuerzaBruta(array_0));
+		System.out.println("Array 1 "+fuerzaBruta(array_1));
+		System.out.println("Array 2 "+fuerzaBruta(array_2));
+		
+		System.out.println("Por metodo recursivo");
+		
+		System.out.println("Array 0 "+recursivo(array_0,0,array_0.length-1));
+		System.out.println("Array 1 "+recursivo(array_1,0,array_1.length-1));
+		System.out.println("Array 2 "+recursivo(array_2,0,array_2.length-1));
+		
+	}
+
+}

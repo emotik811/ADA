@@ -1,0 +1,47 @@
+package programacionDinamica;
+
+public class CambioMonedas {
+	
+	public static int cambioMonedas(int [] monedas, int cantidad) {
+		
+		//lo primero es formar la tabla tabla[moneda][cantidad a pagar]
+		
+		int [][] tabla = new int[monedas.length][cantidad+1];
+		
+		//caso base
+		for(int i = 0; i<monedas.length;i++) {
+			tabla[i][0] = 0;
+		}
+		
+		for(int i = 0; i<monedas.length;i++) {
+			for(int j = 1;j<tabla[i].length;j++) { // como para j = 0 se corresponde con 0 evitamos la redundancia
+				
+				
+				//NOS BASTA CON CALCULAR "MANUALMENTE LA PRIMERA MONEDA"
+				//caso1: no se puede calcular
+				//¿por qué -1 y no 0? Supon por ejemplo que tienes que pagar 3 euros pero no existen monedas de 1 euro
+				if(i==0 && monedas[i]>j) {
+					tabla[i][j] = -1;
+				//caso2: 	
+				}else if (i==0) {
+					tabla[i][j] = 1 + tabla[0][j-monedas[0]];
+				//caso3: exceso
+				}else if(monedas[i]>j) {
+					
+					tabla[i][j] = tabla[i-1][j];
+				//resto de casos
+				}else {
+					tabla[i][j] = Math.min(tabla[i-1][j],1 + tabla[i][j-monedas[i]]);
+				}
+				
+			}
+		}
+		return tabla[monedas.length-1][cantidad];
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

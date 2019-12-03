@@ -1,0 +1,26 @@
+package practica_DyV;
+
+public class RaizCuadrada {
+
+	public static int obtenerRaizCuadrada(int N, int inf, int sup)
+	{
+		
+		if(inf==sup) {
+			return inf;
+		}else {
+			
+			int elemento_medio= (sup+inf)/2;
+			int posible = elemento_medio*elemento_medio;
+			if(elemento_medio*elemento_medio==N) {
+				return elemento_medio;
+			}else if()
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

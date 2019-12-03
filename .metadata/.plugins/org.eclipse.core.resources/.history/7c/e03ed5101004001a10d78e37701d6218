@@ -1,0 +1,26 @@
+package ejercicio1;
+
+public class Ejercicio_1_fb {
+
+	public static int[] array_ordenado(int n)
+	{
+		int [] v = new int [n];
+		
+		v[0] = (int) Math.random();
+		for(int i = 1; i<n;i++) {
+			
+			while(v[i]< v[i-1]) {
+				
+				v[i] = (int) Math.random();
+			}
+			return v;
+		}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int tam = 10;
+		int v [] = new int [tam];
+	}
+
+}

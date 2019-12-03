@@ -1,0 +1,29 @@
+
+public class SumaArray {
+
+	public static int sumaRecursiva(int [] v, int izq, int der)
+	{
+		
+		
+		if(izq == der) {
+			return v[izq];
+		}else {
+			
+			int elemento_medio = (der+izq)/2;
+			return sumaRecursiva(v,izq,elemento_medio) + sumaRecursiva(v,elemento_medio+1,izq);
+		}
+		
+	}
+	
+	public static void main(String[] args)
+	{
+		int [] array = {2,4,6,3,2,1};
+		System.out.println("Por divide y venceras: "+sumaRecursiva(array,0,array.length-1));
+		int sum = 0;
+		for(int elemento : array) {
+			sum = sum+elemento;
+		}
+		
+		System.out.println("Por fuerza bruta: "+sum);
+	}
+}

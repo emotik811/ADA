@@ -1,0 +1,25 @@
+
+public class menorElementoOmitido {
+	
+	public static int fuerzaBruta(int [] v){
+		
+		int i = 0;
+		while(i< v.length && v[i]==i) {
+			i++;
+		}
+		
+		return i;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int [] array_0 = {0,1,2,6,9,11,15};
+		int [] array_1 = {0,1,2,3,4,5,6};
+		int [] array_2 = {1,2,3,4,6,9,11,15};
+		System.out.println("Array 0 "+fuerzaBruta(array_0));
+		System.out.println("Array 1 "+fuerzaBruta(array_1));
+		System.out.println("Array 2 "+fuerzaBruta(array_2));
+	}
+
+}

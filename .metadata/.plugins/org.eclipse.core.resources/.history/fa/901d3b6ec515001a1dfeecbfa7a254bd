@@ -1,0 +1,19 @@
+package programacionDinamica;
+
+public class CambioMonedas {
+	
+	public static int cambioMonedas(int [] monedas, int cantidad) {
+		
+		//lo primero es formar la tabla
+		
+		int [][] tabla = new int[monedas.length][cantidad+1];
+		
+		return 0;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

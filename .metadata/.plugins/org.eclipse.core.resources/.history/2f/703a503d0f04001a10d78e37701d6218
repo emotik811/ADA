@@ -1,0 +1,21 @@
+package ejercicio1;
+
+public class generador_array_ordenado {
+
+	generador_array_ordenado(int n)
+	{
+		int [] v = new int [n];
+		
+		v[0] = (int) Math.random();
+		for(int i = 1; i<n;i++) {
+			
+			while(v[i]< v[i-1]) {
+				
+				v[i] = (int) Math.random();
+			}
+		}
+		
+		return v;
+		
+	}
+}

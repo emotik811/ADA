@@ -1,0 +1,40 @@
+package ejercicio1;
+
+public class Ejercicio_1_fb {
+
+	public static int[] array_ordenado(int n)
+	{
+		int [] v = new int [n];
+		
+		v[0] = (int) Math.random();
+		for(int i = 1; i<n;i++) {
+			
+			while(v[i]< v[i-1]) {
+				
+				v[i] = (int) Math.random();
+			}
+		}
+			return v;
+		}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+		int v [] = {0,5,5,5,5,6,6};
+		
+		boolean encontrado = false;
+		int indice = 0;
+		int pos = -1;
+		while(!encontrado && indice<v.length) {
+			indice++;
+			if(v[indice]==indice) {
+				encontrado = true;
+				pos = indice;
+			}
+		}
+		
+		System.out.print(pos);
+	}
+
+}

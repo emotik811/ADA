@@ -1,0 +1,20 @@
+
+public class menorElementoArray {
+
+	public static int menorRecursivo(int [] v, int izq, int der) {
+		
+		if(izq==der) {
+			return v[izq];
+		}else {
+			
+			int medio = (izq + der)/2;
+			return Math.min(menorRecursivo(v,izq,medio),menorRecursivo(v,medio+1,der));
+		}
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

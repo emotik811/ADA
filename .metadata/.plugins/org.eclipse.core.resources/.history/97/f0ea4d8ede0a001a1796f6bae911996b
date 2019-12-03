@@ -1,0 +1,19 @@
+
+public class menorElementoOmitido {
+	
+	public static int fuerzaBruta(int [] v){
+		
+		int i = 0;
+		while(i< v.length && v[i]==i) {
+			i++;
+		}
+		
+		return i;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
