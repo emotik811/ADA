@@ -14,22 +14,10 @@ public class Chapuzas {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		
-		int tam = 4;
-		int permutaciones = (int) Math.pow(2, tam);
-		
-		for(int i = 0; i<permutaciones; i++) {
-			int [] actual = new int[tam];
-			int permutacion_aux = i;
-			
-			for(int j =0; j<tam;j++) {
-			
-				actual [tam -1 -j] = permutacion_aux%2;
-				permutacion_aux = permutacion_aux/2;
-			}
-			
-			imprimir_array(actual);
-		}
+	int [] a = new int [4];
+	imprimir_array(a);
+	//los arrays se inicializan a 0
+	
 	}
 
 }

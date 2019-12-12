@@ -1,6 +1,6 @@
 /**
  * 
- * @author ***** Indicar aqui el autor de la practica *******
+ * @author ***** Juan Rosa González *******
  *
  */
 public class MochilaFB extends Mochila {
