@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class MochilaPD extends Mochila {
 
 	public SolucionMochila resolver(ProblemaMochila pm) {
-		SolucionMochila sm = null;
+	
 		// Completar la implementacion
 		//Array_soluciones[HASTA ITEM N][PARA PESO M] (+1 para los casos donde no hay item y el peso máximo de la mochila es 0)
 		SolucionMochila [][] array_soluciones = new SolucionMochila[pm.getPesos().length+1][pm.getPesoMaximo()+1];
@@ -24,10 +24,14 @@ public class MochilaPD extends Mochila {
 
 			array_soluciones[0][i] = new SolucionMochila(new int[pm.getPesos().length],0,0);
 		}
+		
+		
+		
+		
 
-		for (int i = 1; i < array_soluciones.length; i++) {
+		for (int i = 1; i < array_soluciones.length; i++) { //objetos
 
-			for(int j = 1; j<array_soluciones[i].length;j++) {
+			for(int j = 1; j<array_soluciones[i].length;j++) { //pesos
 				
 				
 				//si el objeto cabe
@@ -39,8 +43,12 @@ public class MochilaPD extends Mochila {
 
 					if(valor_caso1>=valor_caso2) {
 						//caso1 (no se coge el objeto i)
+						
+						/*
 						SolucionMochila actual = new SolucionMochila( array_soluciones[i-1][j].getSolucion(),array_soluciones[i-1][j].getSumaPesos() ,valor_caso1);
 						array_soluciones[i][j] = actual;
+						*/
+						array_soluciones[i][j]=array_soluciones[i-1][j];
 					}else {
 
 						//caso2 (se coge objeto i)
@@ -57,9 +65,13 @@ public class MochilaPD extends Mochila {
 				//si no cabe
 				}else {
 					
+					/*
 					SolucionMochila actual = new SolucionMochila( array_soluciones[i-1][j].getSolucion(),array_soluciones[i-1][j].getSumaPesos(),array_soluciones[i-1][j].getSumaValores());
 					array_soluciones[i][j] = actual;
+					*/
+					array_soluciones[i][j] = array_soluciones[i-1][j];
 				}
+				
 			}
 		}
 		return array_soluciones[array_soluciones.length-1][array_soluciones[0].length-1];
