@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -10,64 +12,64 @@ import java.util.List;
 
 public class MochilaAV extends Mochila {
 
-	class ratioObjeto implements Comparable<ratioObjeto> {
-		
-		int indice;
-		int valor;
-		double ratio;
-		
-		public ratioObjeto(int indice,int valor ,double ratio) {
-			
-			this.indice =indice;
-			this.valor = valor;
-			this.ratio = ratio;
-		}
-		
+	//CUIDADO
+	class ObjetosSort implements Comparator<Item>{
+
 		@Override
-		public int compareTo(ratioObjeto arg0) {
-			if(this.ratio == arg0.ratio && this.valor == arg0.valor)
-			{
-				return 0;
-			}else if(this.ratio== arg0.ratio && this.valor<arg0.valor) {
-				return 1;
-			}else if(this.ratio== arg0.ratio && this.valor>arg0.valor) {
+		public int compare(Item o1, Item o2) {
+			// TODO Auto-generated method stub
+			double ratio_1 = (double)o1.valor/(double)o1.peso;
+			double ratio_2 = (double)o2.valor/(double)o2.peso;
+			
+			
+			if(ratio_1<ratio_2) {
 				return -1;
-			}else if(this.ratio<arg0.ratio) {
+			}else if(ratio_1 == ratio_2 && o1.valor==o2.valor) {
+				return 0;
+			}else if(ratio_1==ratio_2 && o1.valor<o2.valor) {
+				return -1;
+			}else if(ratio_1==ratio_2 && o1.valor>o2.valor) {
 				return 1;
 			}else {
-				return -1;
+				return 1;
 			}
+			
+
+			
 		}
+		
 	}
 	
 	public SolucionMochila resolver(ProblemaMochila pm) {
 		
   
-		ratioObjeto [] ratios = new ratioObjeto[pm.getPesos().length];
 		
-		for(int i =0; i<pm.getPesos().length;i++) {
-			ratios[i] = new ratioObjeto(i,pm.getValor(i),(double)pm.getValor(i)/pm.getPeso(i));
-		}
-		
+		ArrayList<Item> objetos = pm.getItems();
+		Collections.sort(objetos, new ObjetosSort());
 		//IMPORTANTE: EL ORDEN DE ORCENACIÓN ES ASCENDENTE
-		Arrays.sort(ratios);
 		
-		//Para este punto el array debería de estar ordenado correctamente (de forma ascendente)
+		
+		
+		
+		//Para este punto el array debería de estar ordenado correctamente
+		//OJO: LA ORDENACION ES ASCENDENTE
 		
 		int valorAcumulado = 0;
 		int pesoAcumulado = 0;
-		int [] objetosEscogidos = new int [pm.getPesos().length]; 
+		int [] objetosEscogidos = new int [objetos.size()]; 
 		
-		//como está ordenado ascendentemente, empezamos de arriba a abajo
-		int i =0;
 		
-		while(i <= ratios.length-1 && pesoAcumulado<pm.getPesoMaximo()) {
-			if(pm.getPeso(ratios[i].indice)<= (pm.getPesoMaximo()-pesoAcumulado)) { //si cabe el objeto
-				pesoAcumulado = pesoAcumulado + pm.getPeso(ratios[i].indice);
-				objetosEscogidos[ratios[i].indice] = 1;
-				valorAcumulado = valorAcumulado + pm.getValor(ratios[i].indice);
+		int i =objetos.size()-1;
+		
+		while(pesoAcumulado<pm.getPesoMaximo() && i >= 0 ) {
+			//obejo i<peso
+			if(objetos.get(i).peso<= (pm.getPesoMaximo()-pesoAcumulado)) { //si cabe el objeto
+				
+				pesoAcumulado = pesoAcumulado +objetos.get(i).peso;
+				objetosEscogidos[objetos.get(i).index] = 1;
+				valorAcumulado = valorAcumulado + objetos.get(i).valor;
 			}
-			i++;
+			i--;
 		}
 		
 		SolucionMochila sol = new SolucionMochila(objetosEscogidos,pesoAcumulado,valorAcumulado);
