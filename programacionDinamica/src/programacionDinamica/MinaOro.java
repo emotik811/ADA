@@ -75,7 +75,7 @@ public class MinaOro {
                 {5, 0, 2, 3},
                 {0, 6, 14, 2}};
 		
-;
+
 		
 		
 		System.out.println(resolver(mat));
