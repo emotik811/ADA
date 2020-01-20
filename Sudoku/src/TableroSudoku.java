@@ -1,4 +1,4 @@
-// ALUMNO: Sergio Olav Gausaker Ruiz
+// ALUMNO: Juan Rosa González
 // GRUPO: 2ºA
 
 import java.util.*;
@@ -103,40 +103,41 @@ public class TableroSudoku implements Cloneable {
 		return FILAS*COLUMNAS - numeroDeLibres();
 	}
 
+	//COMPLETAR
 	// Devuelve true si @valor ya esta en la fila @fila.
 	protected boolean estaEnFila(int fila, int valor) {
-		// A completar por el alumno
-		int i = 0;
+		
+		int celda = 0;
 
-		while(i < FILAS) {
-			if (celdas[fila][i] == valor) {
+		while(celda < FILAS) {
+			if (celdas[fila][celda] == valor) {
 				return true;
 			}
-			i++;
+			celda++;
 		}
 		return false;
 	}    
-
+	//COMPLETAR
 	// Devuelve true si @valor ya esta en la columna @columna.
 	protected boolean estaEnColumna(int columna, int valor) {
-		// A completar por el alumno
-		int i = 0;
+		
+		int celda = 0;
 
-		while(i < COLUMNAS) {
-			if (celdas[i][columna] == valor) {
+		while(celda < COLUMNAS) {
+			if (celdas[celda][columna] == valor) {
 				return true;
 			}
-			i++;
+			celda++;
 		}
 		return false;
 	}    
 
-
+	//COMPLETAR
 	// Devuelve true si @valor ya esta en subtablero al que pertence @fila y @columna.
 	protected boolean estaEnSubtablero(int fila, int columna, int valor) {
-		// A completar por el alumno	
-		int filaReal = fila - fila % 3;
-		int columnaReal = columna - columna % 3;
+			
+		int filaInicialSbbTablero = fila - fila % 3;
+		int columnaInicialSubtablero = columna - columna % 3;
 
 		int i = 0;
 		int j = 0;
@@ -144,7 +145,7 @@ public class TableroSudoku implements Cloneable {
 		while (i < 3) {
 			j = 0;
 			while (j < 3) {
-				if (celdas[filaReal + i][columnaReal + j] == valor) {
+				if (celdas[filaInicialSbbTablero + i][columnaInicialSubtablero + j] == valor) {
 					return true;
 				}
 				j++;
@@ -154,20 +155,22 @@ public class TableroSudoku implements Cloneable {
 		return false;		
 	}    
 
-
+	//COMPLETAR
 	// Devuelve true si se puede colocar el @valor en la @fila y @columna dadas.
 	protected boolean sePuedePonerEn(int fila, int columna, int valor) {
-		// A completar por el alumno
+		
 		return !estaEnSubtablero(fila, columna, valor) && !estaEnColumna(columna, valor) && !estaEnFila( fila, valor);
 	}
 
+	//COMPLETAR
 	protected void resolverTodos(List<TableroSudoku> soluciones, int fila, int columna) {
-		// A completar por el alumno
+		
 
 		if(numeroDeLibres() == 0) {
 			soluciones.add(new TableroSudoku(this));
 		} else {
-			if (estaLibre(fila, columna)) {
+			if (estaLibre(fila, columna)) 
+			{
 				for (int x = 1; x <= MAXVALOR; x++) {
 					if (sePuedePonerEn(fila, columna, x)) {
 						celdas[fila][columna] = x;
